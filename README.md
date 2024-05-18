@@ -1,0 +1,2 @@
+# Kandog
+ Aplicación para adiestradores
