@@ -22,7 +22,7 @@ class SesionController extends Controller
         $sesionesPasadas = Sesion::where('user_id', $user->id)
             ->where('active', '1')
             ->where('inicio', '<', Carbon::now())
-            ->orderBy('inicio')
+            ->orderBy('inicio', 'desc')
             ->paginate(10);
         return view('sesion.index', ['sesionesPendientes' => $sesionesPendientes, 'sesionesPasadas'=>$sesionesPasadas]);
     }
@@ -78,15 +78,17 @@ class SesionController extends Controller
             ->where('active', '1')
             ->where('perro_id', $perroid)
             ->count();
-        return view('sesion.create', ['sesion'=>$sesion, 'perro' => $perro, 'sesionesTotales' => $sesionesTotales]);
+        return view('sesion.edit', ['sesion'=>$sesion, 'perro' => $perro, 'sesionesTotales' => $sesionesTotales]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Sesion $sesion)
     {
-        //
+        $sesion->update($request->all());
+
+        return redirect()->route('sesion.index')->with('success', 'Sesión modificada con éxito.');
     }
 
     /**
