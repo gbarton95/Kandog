@@ -1,0 +1,103 @@
+body {
+    position: relative;
+}
+
+.marcoPrueba {
+    border: 3px solid red;
+    border-radius: 2px;
+}
+
+.cajaTiempo {
+    border: 3px dashed grey;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.lupa {
+    width: 25px;
+    margin-left: 5px;
+}
+
+.columnaBoton {
+    width: 100px;
+}
+
+.btn-primary {
+    background-color: #00a727;
+    border: 2px solid #00a727;
+    color: black;
+    transition: 0.5s;
+}
+
+.btn-primary:hover{
+    background-color: #08bd32;
+    border: 2px solid #08bd32;
+    color: black;
+    font-weight: 800;
+}
+
+.modal-body p{
+    margin-bottom: 20px;
+}
+
+.modal-body li{
+    margin-left: 20px;
+}
+
+.boton-foot {
+    padding: 0;
+    padding-top: 5px;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.page-item {
+    width: 50px;
+    text-align: center;
+}
+
+#carruselPortada {
+    max-height: 80vh;
+}
+
+#carruselPortada img {
+    width: 100%;
+    min-height: 65vh;
+}
+
+/*COLORES*/
+
+.asleep {
+    background-color: rgba(255, 255, 255, 0);
+    border: 1px dashed black;
+    color: black;
+}
+
+.personal-bg-orange {
+    background-color: #f4b325;
+}
+
+.personal-bg-yellow {
+    background-color: rgb(240, 240, 135);
+}
+
+.personal-card-header{
+    background-color: #f1fd449f;
+    font-weight: bold;
+}
+
+.blanco-transparente {
+    background-color: rgba(255, 255, 255, 0.49);
+}
+
+.fondo-huesos {
+    background-image: url(../images/fondo_bg2.png);
+    background-repeat: repeat;
+    background-size: 10%;
+}

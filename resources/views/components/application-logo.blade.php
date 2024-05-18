@@ -1,0 +1,1 @@
+<img src="{{asset('/images/Logo_naranja.png')}}" alt="Logo Kandog" style="height: 50px;">
