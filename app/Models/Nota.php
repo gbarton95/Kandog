@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Otro extends Model
+class Nota extends Model
 {
     use HasFactory;
 
@@ -17,10 +17,8 @@ class Otro extends Model
     ];
 
     protected $fillable = [
-        'user_id',
-        'tema',
-        'plazas',
-        'material'
+        'titulo',
+        'contenido',
     ];
 
     public function user()

@@ -48,14 +48,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function eventos()
-    {
-        return $this->hasMany(Evento::class, 'evento_id');
-    }
 
-    public function propietarios()
+    public function notas()
     {
-        return $this->hasMany(Propietario::class, 'propietario_id');
+        return $this->hasMany(Nota::class, 'nota_id');
     }
     
 

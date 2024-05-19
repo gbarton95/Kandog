@@ -24,6 +24,9 @@ Route::middleware('auth')->group(function () {
 //Idiomas
 Route::get('/locale/{locale}', 'LocaleController@setLocale')->name('setLocale');
 
+//Informes
+Route::get('/informe', [DashboardController::class, ' ']);
+
 //Rutas de perros
 Route::post('perro/buscar', [PerroController::class, 'search'])->middleware(['auth', 'verified'])->name('perro.search');
 Route::get('perro/ordenar', [PerroController::class, 'ordenarTabla'])->name('perro.ordenarTabla');

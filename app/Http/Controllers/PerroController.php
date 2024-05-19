@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Perro;
 
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\Informe;
+
 class PerroController extends Controller
 {
     public function index()
@@ -93,5 +96,28 @@ class PerroController extends Controller
             ->orderBy($columna)
             ->get();
         return view('perro.index', ['perros' => $perros, 'buscar'=>$buscar])->render();
+    }
+
+    public function generarInforme()
+    {
+        $data = [
+            'title' => 'Informe',
+            'date' => date('m/d/Y'),
+            'content' => 'Contenido del informe...'
+        ];
+
+        // Genera el PDF
+        $pdf = PDF::loadView('reports', $data);
+
+        // Guarda el PDF en el almacenamiento
+        $pdfPath = 'reports/report_' . time() . '.pdf';
+        Storage::put($pdfPath, $pdf->output());
+
+        // Guarda la ruta del PDF en la base de datos
+        $report = new Informe();
+        $report->path = $pdfPath;
+        $report->save();
+
+        return response()->json(['message' => 'Informe generado y guardado correctamente', 'path' => $pdfPath]);
     }
 }

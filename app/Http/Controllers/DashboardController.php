@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
+use Locale;
 
 class DashboardController extends Controller
 {
     public function index() {
         $user = auth()->user();
+        $locale = App::getLocale();
         $username = $user->name;
         $hoy = [];
         $lluviaTomorrow = null;
@@ -16,6 +21,7 @@ class DashboardController extends Controller
         $windy = null;
         $no = null;
     
+        //API TIEMPO
         try {
             //Llamada a la API
             $respuesta = Http::withHeaders([
@@ -43,8 +49,24 @@ class DashboardController extends Controller
         } catch (\Exception $e) {//si no puede conectarse...
             $no = "No weather data available";
         }
+
+        //CALENDARIO HOY
+        $months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        $meses = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+        
+        if($locale === 'es') {
+           $fechaHoy = Carbon::today()->day . " " . $meses[Carbon::today()->month - 1]; 
+        } else {
+           $fechaHoy = $months[Carbon::today()->month - 1] . " " . Carbon::today()->day . "th"; 
+        }
     
-        return view('dashboard', ['username'=>$username, 'hoy'=>$hoy, 'lluviaTomorrow'=>$lluviaTomorrow, 'maxTemp'=>$maxTemp, 'windy'=>$windy, 'no'=>$no]);
+        //CURIOSIDAD SOBRE PERROS
+        $filePath = storage_path('app/curiosidades_perros.json');
+        $curiosidadesPerros = json_decode(File::get($filePath), true);
+        $curiosidadAleatoria = $curiosidadesPerros[array_rand($curiosidadesPerros)];
+    
+        return view('dashboard', ['username'=>$username, 'hoy'=>$hoy, 'lluviaTomorrow'=>$lluviaTomorrow, 'maxTemp'=>$maxTemp, 'windy'=>$windy, 'no'=>$no,
+                    'fechaHoy'=>$fechaHoy, 'curiosidadPerro' => $curiosidadAleatoria]);
     }
     
 }

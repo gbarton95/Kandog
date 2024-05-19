@@ -11,8 +11,13 @@
                 <div class="p-6 container-fluid"> <!--Contenedor blanco-->
                     <div class="row justify-center">
                     
-                        <div class="col-12 col-lg-9 col-xl-19">
-                            <span class="display-2">{{__('Welcome')}}, {{$username}}</span>
+                        <div class="col-12 col-lg-6">
+                            <span class="display-2">{{__('Welcome')}}, {{$username}}</span><br>
+                            <span style="font-style: italic;">{{__($curiosidadPerro)}}</span>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-4 col-lg-3" style="position: relative;">
+                            <img class="mt-lg-0" src="{{asset("images/calendarioDashboard.png")}}" alt="calendario de hoy" style="width: 180px; margin: auto; margin-top:20px;">
+                            <p style="text-align: center; min-width: 150px; position: absolute; top: 110px; font-size: 35px; left: 50%; transform: translateX(-50%);">{{$fechaHoy}}</p>
                         </div>
                         <!--API DEL TIEMPO-->
                         @if($hoy)
