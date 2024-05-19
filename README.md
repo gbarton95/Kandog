@@ -1,6 +1,6 @@
 # Kandog
 
-Kandog is a web application that provides resources to dog trainers and related professionals in Zaragoza with the aim of educating the public on the care and education of their dogs.
+Kandog is a web application that provides resources to dog trainers and related professionals in Zaragoza with the aim of guiding the public towards a better care and education of their dogs.
 
 ## Features
 
