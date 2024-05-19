@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use App\Models\Sesion;
 use Locale;
 
 class DashboardController extends Controller
@@ -65,8 +66,26 @@ class DashboardController extends Controller
         $curiosidadesPerros = json_decode(File::get($filePath), true);
         $curiosidadAleatoria = $curiosidadesPerros[array_rand($curiosidadesPerros)];
     
+
+        //SESIONES PRÓXIMAS
+        $sesionesHoy = Sesion::where('user_id', $user->id)
+            ->whereDate('inicio', Carbon::today()->toDateString())
+            ->where('active', '1')
+            ->orderBy('inicio')
+            ->get();
+
+        $fiveDays =  Carbon::today()->addDays(5)->toDateString();
+        
+        $sesionesProximas = Sesion::where('user_id', $user->id)
+            ->whereDate('inicio', '>', Carbon::today()->toDateString())
+            ->whereDate('inicio', '<=', $fiveDays)
+            ->where('active', '1')
+            ->orderBy('inicio')
+            ->get();
+
         return view('dashboard', ['username'=>$username, 'hoy'=>$hoy, 'lluviaTomorrow'=>$lluviaTomorrow, 'maxTemp'=>$maxTemp, 'windy'=>$windy, 'no'=>$no,
-                    'fechaHoy'=>$fechaHoy, 'curiosidadPerro' => $curiosidadAleatoria]);
+                    'fechaHoy'=>$fechaHoy, 'curiosidadPerro' => $curiosidadAleatoria, 'sesionesHoy' => $sesionesHoy,
+                    'sesionesProximas' => $sesionesProximas]);
     }
     
 }

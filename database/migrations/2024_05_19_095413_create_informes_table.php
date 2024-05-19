@@ -18,6 +18,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('perros') 
                 ->onDelete('cascade');
+            $table->string('nombre');
             $table->string('path');
             $table->timestamps();
         });

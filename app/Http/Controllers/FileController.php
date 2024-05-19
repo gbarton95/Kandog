@@ -49,25 +49,39 @@ class FileController extends Controller
 
     public function storeCollection(Request $request) {
         $user = auth()->user();
-    
+
         $coleccion = new Coleccion();
         $coleccion->user_id = $user->id;
         $coleccion->nombre = $request->input('nombre');
         $coleccion->descripcion = $request->input('descripcion');
+        $coleccion->imagenCabecera = "images/collectionIcon.webp";
 
-        if ($request->filled('imagenCabecera')) {
-            $coleccion->imagenCabecera = $request->input('imagenCabecera');
-        } else {
-            $coleccion->imagenCabecera = "images/collectionIcon.webp";
-        }
-
-        $coleccion->fill($request->all());
+        // if ($request->hasFile('imagenCabecera')) {
+        //     $request->validate([
+        //         'imagenCabecera' => 'required|file|max:10240'
+        //     ]);
+        //     $path = $request->file('imagenCabecera')->store('public/uploads');
+        //     $coleccion->imagenCabecera = $path;
+        // } else {
+        //     $coleccion->imagenCabecera = "images/collectionIcon.webp";
+        // }
 
         $coleccion->save();
 
         return back();
     }
 
+    public function showCollection(Coleccion $id) {
+
+        $user = auth()->user();
+        $files = File::where('user_id', $user->id)
+                    ->where('coleccion', $id)
+                    ->where('active', '1')
+                    ->get();
+
+        return view('file.collectionshow', compact('files'));
+    }
+    
 
     // Método para descargar un archivo
     public function download(File $file)

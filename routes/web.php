@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PerroController;
 use App\Http\Controllers\SesionController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\InformeController;
 use Illuminate\Support\Facades\Route;
 
 //Welcome
@@ -25,7 +26,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/locale/{locale}', 'LocaleController@setLocale')->name('setLocale');
 
 //Informes
-Route::get('/informe', [DashboardController::class, ' ']);
+Route::post('/generate-pdf', [InformeController::class, 'generatePDF'])->middleware(['auth', 'verified'])->name('informe.create');
 
 //Rutas de perros
 Route::post('perro/buscar', [PerroController::class, 'search'])->middleware(['auth', 'verified'])->name('perro.search');
@@ -43,3 +44,5 @@ Route::get('archivos', [FileController::class, 'index'])->middleware(['auth', 'v
 Route::post('archivos/crear', [FileController::class, 'store'])->middleware(['auth', 'verified'])->name('file.store');
 Route::get('archivo/descargar/{file}', [FileController::class, 'download'])->middleware(['auth', 'verified'])->name('file.download');
 require __DIR__.'/auth.php';
+Route::post('archivos/colecciones', [FileController::class, 'storeCollection'])->middleware(['auth', 'verified'])->name('file.storeCollection');
+Route::get('coleccion/{id}', [FileController::class, 'showCollection'])->middleware(['auth', 'verified'])->name('collection.show');

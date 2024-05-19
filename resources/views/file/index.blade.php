@@ -59,6 +59,7 @@
                     </div>
                 </div>
 
+                <!--modal para crear colecciones-->
                 <div class="modal fade" id="nuevaColeccion" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -68,13 +69,14 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('file.storeCollection') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="file">{{ __('Select File') }}:</label>
-                                        <input type="file" name="file" id="file" class="form-control-file">
-                                        <input type="text" name="filename" id="filename" class="form-control-file"
-                                            placeholder="{{ __('File name') }}">
+                                        <label for="nombre">{{ __('Enter collection name') }}:</label>
+                                        <input type="text" name="nombre" id="nombre" class="form-control-file">
+                                        <label for="descripcion">{{ __('Brief description') }}:</label>
+                                        <input type="text" name="descripcion" id="descripcion" class="form-control-file">
+                                        <input hidden type="file" name="imagenCabecera" id="imagenCabecera" class="form-control-file">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -118,8 +120,8 @@
                                 <div class="card-body">
                                     <ul class="list-group">
                                         @foreach ($colecciones as $coleccion)
-                                            <li class="list-group-item">
-                                                <a href="">
+                                            <li>
+                                                <a href="{{route('collection.show', $coleccion->id)}}">
                                                     <div class="card mb-3" style="max-width: 540px;">
                                                         <div class="row g-0">
                                                             <div class="col-md-4">
@@ -146,8 +148,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

@@ -12,6 +12,15 @@ body {
     padding: 15px;
 }
 
+.textoRotado {
+    writing-mode: vertical-rl;
+    transform: rotate(-180deg);
+    white-space: nowrap;
+    width: 20px;
+    vertical-align: middle;
+    text-align: center;
+}
+
 .lupa {
     width: 25px;
     margin-left: 5px;

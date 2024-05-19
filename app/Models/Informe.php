@@ -16,8 +16,9 @@ class Informe extends Model
     ];
 
     protected $fillable = [
-        'titulo',
-        'contenido',
+        'perro_id',
+        'nombre',
+        'path',
     ];
 
     public function perro()
