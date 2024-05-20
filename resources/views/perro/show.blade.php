@@ -118,16 +118,16 @@
                             <div class="col-md-6"><!--ficha2 recursos-->
                               <div class="card mb-4 mb-md-0">
                                 <div class="card-body">
-                                  <p class="mb-4"><span class="text-primary font-italic me-1">{{__('REPORTS')}}</span> Informes
+                                  <p class="mb-4"><span class="text-primary font-italic me-1">{{__('REPORT')}}</span> {{__('Generate today\'s report')}}
                                   </p>
                                   <form action="{{ route('informe.create') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="nombrePDF" class="form-label">{{ __('Name of your report') }}</label>
+                                        <label for="nombrePDF" class="form-label">{{ __('Name your report') }}</label>
                                         <input type="text" class="form-control" id="nombrePDF" name="nombrePDF" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="cuerpo" class="form-label">{{ __('Make report') }}</label>
+                                        <label for="cuerpo" class="form-label">{{ __('Make your report') }}</label>
                                         <textarea class="form-control" id="cuerpo" name="cuerpo" rows="4" required></textarea>
                                     </div>
                                     <input hidden type="text" id="perroPDF" name="perroPDF" value="{{ $perro->id }}">
