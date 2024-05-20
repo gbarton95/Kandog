@@ -113,7 +113,7 @@
                                     <h2>{{__('Try promoting yourself on your socials!')}}</h2>
                                     <img src="{{asset('images/cute-dog.gif')}}" alt="nothing to see here">
                                     <br><br>
-                                    <p>{{__('Your next session is on ')}}{{$sesionesProximas[0]->inicio}}</p>
+                                    @if(!empty($sesionesProximas) && count($sesionesProximas) > 0) <p>{{__('Your next session is on ')}}{{$sesionesProximas[0]->inicio}}</p> @endif
                                 </div>
                                 @endif
                             </div>
