@@ -4,12 +4,12 @@
             <div class="modal-header d-flex justify-content-center">
                 <h5 class="modal-title fw-bold fs-3">{{ $title }}</h5>
             </div>
-            <div class="modal-body pb-3">
+            <div class="modal-body pb-3 text-center">
                 {{ $slot }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-danger" id="{{ $id }}ConfirmButton">{{ $confirmText }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Cancel')}}</button>
+                <button type="submit" class="btn btn-danger" id="{{$prefix}}{{ $id }}ConfirmButton">{{ $confirmText }}</button>
             </div>
         </div>
     </div>

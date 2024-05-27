@@ -79,6 +79,15 @@ body {
     min-height: 65vh;
 }
 
+.btn-icon {
+    width: 20px;
+    height: 23px;
+}
+.btn-icon2 {
+    width: 30px;
+    height: 25px;
+}
+
 /*COLORES*/
 
 .asleep {

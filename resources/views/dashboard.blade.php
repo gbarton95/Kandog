@@ -19,7 +19,7 @@
                             <img class="mt-lg-0" src="{{ asset('images/calendarioDashboard.png') }}"
                                 alt="calendario de hoy" style="width: 180px; margin: auto; margin-top:20px;">
                             <p
-                                style="text-align: center; min-width: 150px; position: absolute; top: 110px; font-size: 35px; left: 50%; transform: translateX(-50%);">
+                                style="text-align: center; min-width: 150px; font-size: 35px; transform: translateY(-150%);">
                                 {{ $fechaHoy }}</p>
                         </div>
                         <!--API DEL TIEMPO-->

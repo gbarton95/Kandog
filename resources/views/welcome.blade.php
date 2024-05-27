@@ -860,6 +860,18 @@
         <div id="carruselPortada" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="3000">
+                    <img src="{{ asset('images/Portada9.webp') }}" class="d-block h-md-100 object-fit-cover"
+                        alt="foto9">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="{{ asset('images/Portada8.webp') }}" class="d-block h-md-100 object-fit-cover"
+                        alt="foto8">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
+                    <img src="{{ asset('images/Portada10.webp') }}" class="d-block h-md-100 object-fit-cover"
+                        alt="foto10">
+                </div>
+                <div class="carousel-item" data-bs-interval="3000">
                     <img src="{{ asset('images/Portada2.webp') }}" class="d-block h-md-100 object-fit-cover"
                         alt="foto2">
                 </div>

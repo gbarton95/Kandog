@@ -29,7 +29,7 @@ class DashboardController extends Controller
                 'X-RapidAPI-Host' => 'weatherapi-com.p.rapidapi.com',
                 'X-RapidAPI-Key' => 'f3be588d37msh40e913cbe764a68p1eafa1jsnf1ebda0330e2',
             ])->get('https://weatherapi-com.p.rapidapi.com/forecast.json?q=Zaragoza&days=3&lang=España');
-    
+
             $hoy = [
                 'temp' => $respuesta->json('current.temp_c'),
                 'viento' => $respuesta->json('current.wind_kph'),

@@ -46,3 +46,5 @@ Route::get('archivo/descargar/{file}', [FileController::class, 'download'])->mid
 require __DIR__.'/auth.php';
 Route::post('archivos/colecciones', [FileController::class, 'storeCollection'])->middleware(['auth', 'verified'])->name('file.storeCollection');
 Route::get('coleccion/{id}', [FileController::class, 'showCollection'])->middleware(['auth', 'verified'])->name('collection.show');
+Route::post('/file/edit/{id}', [FileController::class, 'updateFile'])->name('file.edit');
+Route::delete('/collection/{id}', [FileController::class, 'destroyFile'])->name('file.destroy');

@@ -69,7 +69,7 @@
                                                         <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#deleteModalS{{ $sesion->id }}"
                                                             class="btn btn-danger btn-sm w-100 h-80 asleep">{{ __('Delete') }}</button>
-                                                        <x-modal-borrar id="deleteModalS{{ $sesion->id }}"
+                                                        <x-modal-borrar id="deleteModalS{{ $sesion->id }}" prefix="ses"
                                                             title="{{ __('Delete session') }}"
                                                             confirmText="{{ __('Delete') }}">
                                                             {{ __('You are going to delete a session with') }}
@@ -125,7 +125,8 @@
                                                             class="btn btn-danger btn-sm w-100 h-80 asleep">{{ __('Delete') }}</button>
                                                         <x-modal-borrar id="deleteModalS{{ $sesion->id }}"
                                                             title="{{ __('Delete session') }}"
-                                                            confirmText="{{ __('Delete') }}">
+                                                            confirmText="{{ __('Delete') }}"
+                                                            prefix="ses">
                                                             {{ __('You are going to delete a session with') }}
                                                             {{ $sesion->perro->nombre }}<br>
                                                             {{ $sesion->inicio }}, {{ $sesion->ubicacion }}.<br>

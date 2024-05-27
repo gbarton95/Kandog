@@ -26,7 +26,11 @@ return new class extends Migration
             $table->string('filename');
             $table->string('type');
             $table->string('path');
-            $table->string('coleccion')->nullable();
+            $table->unsignedBigInteger('coleccion_id')->nullable();
+                $table->foreign('coleccion_id')
+                        ->references('id')
+                        ->on('colecciones')
+                        ->onDelete('cascade');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
