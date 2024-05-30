@@ -40,10 +40,10 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">{{ __('Dog\'s name') }}</th>
-                                            <th scope="col">{{ __('Owner') }}</th>
+                                            <th class="d-none d-sm-table-cell" scope="col">{{ __('Owner') }}</th>
                                             <th scope="col">{{ __('Location') }}</th>
                                             <th scope="col">{{ __('Date') }}</th>
-                                            <th scope="col">{{ __('Duration') }}</th>
+                                            <th class="d-none d-sm-table-cell" scope="col">{{ __('Duration') }}</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -51,11 +51,11 @@
                                         @foreach ($sesionesPendientes as $sesion)
                                             <tr>
                                                 <td>{{ $sesion->perro->nombre }}</td>
-                                                <td>{{ $sesion->perro->tutor_nombre }}
+                                                <td class="d-none d-sm-table-cell">{{ $sesion->perro->tutor_nombre }}
                                                     {{ $sesion->perro->tutor_apellidos }}</td>
                                                 <td>{{ $sesion->ubicacion }}</td>
                                                 <td>{{ $sesion->inicio }}</td>
-                                                <td>{{ $sesion->duracion }} {{ __('minutes') }}</td>
+                                                <td class="d-none d-sm-table-cell">{{ $sesion->duracion }} {{ __('minutes') }}</td>
                                                 <td class="text-center">
                                                     <div class="mb-1">
                                                         <a href="{{ route('sesion.edit', $sesion->id) }}"
@@ -95,21 +95,21 @@
                                     <thead class="thead-dark">
                                         <tr>
                                             <th scope="col">{{ __('Dog\'s name') }}</th>
-                                            <th scope="col">{{ __('Owner') }}</th>
+                                            <th class="d-none d-sm-table-cell" scope="col">{{ __('Owner') }}</th>
                                             <th scope="col">{{ __('Location') }}</th>
                                             <th scope="col">{{ __('Date') }}</th>
-                                            <th scope="col">{{ __('Duration') }}</th>
+                                            <th class="d-none d-sm-table-cell" scope="col">{{ __('Duration') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($sesionesPasadas as $sesion)
                                             <tr class="">
                                                 <td>{{ $sesion->perro->nombre }}</td>
-                                                <td>{{ $sesion->perro->tutor_nombre }}
+                                                <td class="d-none d-sm-table-cell">{{ $sesion->perro->tutor_nombre }}
                                                     {{ $sesion->perro->tutor_apellidos }}</td>
                                                 <td>{{ $sesion->ubicacion }}</td>
                                                 <td>{{ $sesion->inicio }}</td>
-                                                <td>{{ $sesion->duracion }} {{ __('minutes') }}</td>
+                                                <td class="d-none d-sm-table-cell">{{ $sesion->duracion }} {{ __('minutes') }}</td>
                                                 <td class="text-center">
                                                     <div class="mb-1">
                                                         <a href="{{ route('sesion.edit', $sesion->id) }}"
