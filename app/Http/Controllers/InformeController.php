@@ -33,6 +33,6 @@ class InformeController extends Controller
 
         $pdf = PDF::loadView('myPDF', $data);
 
-        return $pdf->download('mi-pdf.pdf');
+        return $pdf->download('Informe'. $titulo . '.pdf');
     }
 }

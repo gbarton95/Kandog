@@ -105,6 +105,15 @@ body {
     
 }
 
+.clickme {
+    color:blue;
+    transition: 0.5s ease;
+}
+
+.clickme:hover {
+    color: rgb(200, 130, 0);
+}
+
 /*COLORES*/
 
 .asleep {

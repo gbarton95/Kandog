@@ -50,6 +50,7 @@
                         <label for="calle" class="form-label">{{ __('Location') }}</label>
                         <input type="text" class="form-control" id="calle" name="calle">
                     </div>
+                    <hr>
                     <div class="col-md-3">
                         <label for="tutor_nombre" class="form-label">{{ __('Owner\'s name') }}*</label>
                         <input type="text" class="form-control" id="tutor_nombre" name="tutor_nombre" required>

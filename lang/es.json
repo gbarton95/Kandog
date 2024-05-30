@@ -98,6 +98,7 @@
     "File": "Archivo",
     "Files": "Archivos",
     "File name": "Nombre del archivo",
+    "for": "para",
     "Forbidden": "Prohibido",
     "Forgot your password?": "¿Olvidaste tu contraseña?",
         "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "¿Has olvidado tu contraseña? No hay problema. Pon aquí tu correo electrónico y te enviaremos un enlace para restablecer la contraseña, permitiéndote elegir una nueva.",
@@ -222,6 +223,7 @@
     "Select File": "Selecciona tu archivo",
     "Send": "Enviar",
     "Sessions": "Sesiones",
+    "SESSIONS": "SESIONES",
     "Session +": "Sesión +",
     "Session Has Expired": "La sesión ha expirado",
     "Session for": "Sesión para",
@@ -251,6 +253,7 @@
         "¡Gracias por registrarte! Antes de comenzar, ¿podrías verificar la dirección de correo electrónico haciendo clic en el enlace que te acabamos de enviar? Si no lo has recibido, te enviamos otro sin problema.",
     "The documents you have in this folder will also be permanently deleted. Make sure to save or move those you want to keep before procceeding.":
     "Los documentos que tengas en esta carpeta se eliminarán permanentemente. Asegúrate de guardar o mover los que quieras quedarte antes de proceder.",
+    "There's no observations for this dog": "No hay anotaciones para este perro",
     "Terms of sale": "Condiciones",
     "This dog lives in": "Este perro vive en",
     "Time": "Hora",

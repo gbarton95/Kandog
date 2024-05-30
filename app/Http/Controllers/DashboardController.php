@@ -85,7 +85,7 @@ class DashboardController extends Controller
             ->orderBy('inicio')
             ->get();
 
-        if($sesionesProximas) {
+        if(!empty($sesionesProximas) && isset($sesionesProximas[0])) {
             $proxDiaSesion = Carbon::parse($sesionesProximas[0]->inicio)->format('d-m');
             $proxHoraSesion = Carbon::parse($sesionesProximas[0]->inicio)->format('H:i');
         }

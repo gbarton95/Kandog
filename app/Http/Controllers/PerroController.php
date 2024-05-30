@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Perro;
+use App\Models\Sesion;
 
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Informe;
@@ -61,13 +62,21 @@ class PerroController extends Controller
     
     public function show(Perro $perro)
     {
-        return view('perro.show', compact('perro'));
+        $user = auth()->user();
+        $sesiones = Sesion::where('user_id', $user->id)
+            ->where('perro_id', $perro->id)
+            ->orderBy('inicio')
+            ->get();
+        $totalSesiones = Sesion::where('user_id', $user->id)
+            ->where('perro_id', $perro->id)
+            ->orderBy('inicio')
+            ->count();
+        return view('perro.show', compact('perro', 'sesiones', 'totalSesiones'));
     }
 
     
     public function edit(Perro $perro)
     {
-        // $perro = Perro::find($id);
         return view('perro.edit', compact('perro'));
     }
 
