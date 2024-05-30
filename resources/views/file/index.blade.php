@@ -32,7 +32,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <legend>{{ __('Upload file') }}</legend>
+                                <legend style="margin-top: auto; margin-bottom:auto">{{ __('Upload file') }}</legend>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -79,30 +79,39 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">{{ __('Create collection') }}</h5>
+                                <legend class="modal-title" style="margin-top: auto; margin-bottom:auto">{{ __('Create collection') }}</legend>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <form action="{{ route('file.storeCollection') }}" method="POST"
-                                    enctype="multipart/form-data">
+                            <div class="modal-body">                                
+                                <form action="{{ route('file.storeCollection') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="form-group">
-                                        <label for="nombre">{{ __('Enter collection name') }}:</label>
-                                        <input type="text" name="nombre" id="nombre" class="form-control-file">
-                                        <label for="descripcion">{{ __('Brief description') }}:</label>
-                                        <input type="text" name="descripcion" id="descripcion"
-                                            class="form-control-file">
-                                        <input hidden type="file" name="imagenCabecera" id="imagenCabecera"
-                                            class="form-control-file">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">{{ __('Back') }}</button>
-                                        <button type="submit" id="saveBtn"
-                                            class="btn btn-primary">{{ __('Save') }}</button>
-                                    </div>
+                                    <fieldset>
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">{{ __('Enter collection name') }}:</label>
+                                            <input type="text" style="width: 100%" name="nombre" id="nombre" class="form-control-file" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="descripcion" class="form-label">{{ __('Brief description') }}:</label><br>
+                                            <input type="text" style="width: 100%" name="descripcion" id="descripcion"
+                                                class="form-control-file" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="imagenCabecera" class="form-label">{{ __('Choose an image for your collection') }}:</label>
+                                            <input type="file" name="imagenCabecera" id="imagenCabecera"
+                                                class="form-control-file">
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">{{ __('Back') }}</button>
+                                            <button type="submit" id="saveBtn"
+                                                class="btn btn-primary">{{ __('Save') }}</button>
+                                        </div>
+                                    </fieldset>
                                 </form>
+
+
                             </div>
                         </div>
                     </div>
@@ -197,14 +206,27 @@
                                 <div class="card-body">
                                     <ul class="list-group">
                                         @foreach ($colecciones as $coleccion)
-                                            <li>
+                                            <li style="position: relative;">
+                                                <form action="{{ route('collection.destroy', $coleccion->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn-close cerrarColec" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteCollection{{ $coleccion->id }}">
+                                                    </button>
+                                                        <x-modal-borrar id="deleteCollection{{ $coleccion->id }}"
+                                                            title="{{__('Delete collection')}}" prefix='col' confirmText="{{__('Delete')}}">
+                                                            <span style="color: red">{{strtoupper(__("Warning"))}}</span>: {{__("You are going to delete the collection:")}}  <b>{{$coleccion->nombre}}</b><br><br>
+                                                            <span>{{__('The documents you have in this folder will also be permanently deleted. Make sure to save or move those you want to keep before procceeding.')}}</span><br><br>
+                                                            <span style="font-weight: bold">{{__("Are you sure?")}}</span>
+                                                        </x-modal-borrar>
+                                                </form>
                                                 <a href="{{ route('collection.show', $coleccion->id) }}">
                                                     <div class="card mb-3" style="max-width: 540px;">
                                                         <div class="row g-0">
                                                             <div class="col-md-4">
-                                                                <img src="{{ $coleccion->imagenCabecera }}"
-                                                                    class="img-fluid rounded-start"
-                                                                    alt="imagen_coleccion">
+                                                                <img src="{{ asset('storage/uploads/' . $coleccion->imagenCabecera) }}"
+                                                                    class="img-fluid rounded-start rounded-circle"
+                                                                    alt="imagen_coleccion" style="max-height: 150px;">
                                                             </div>
                                                             <div class="col-md-8">
                                                                 <div class="card-body">

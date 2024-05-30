@@ -113,7 +113,10 @@
                                     <h2>{{__('Try promoting yourself on your socials!')}}</h2>
                                     <img src="{{asset('images/cute-dog.gif')}}" alt="nothing to see here">
                                     <br><br>
-                                    @if(!empty($sesionesProximas) && count($sesionesProximas) > 0) <p>{{__('Your next session is on ')}}{{$sesionesProximas[0]->inicio}}</p> @endif
+                                    @if(!empty($sesionesProximas) && count($sesionesProximas) > 0) 
+                                        <span style="font-size: 2rem;">{{__('Your next session is on ')}}{{$proxDiaSesion}} 
+                                            {{__('at')}} {{$proxHoraSesion}}h {{__('with')}} <a href="{{ route('perro.show', $sesionesProximas[0]->perro->id) }}">{{$sesionesProximas[0]->perro->nombre}}</a></span> 
+                                    @endif
                                 </div>
                                 @endif
                             </div>

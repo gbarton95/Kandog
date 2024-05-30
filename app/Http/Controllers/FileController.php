@@ -16,7 +16,8 @@ class FileController extends Controller
                     ->where('coleccion_id', null)
                     ->where('active', '1')
                     ->get();
-        $colecciones = Coleccion::all();
+        $colecciones = Coleccion::where('user_id', $user->id)
+                        ->get();
         // dd($colecciones);
         return view('file.index', compact('files', 'colecciones'));
     }
@@ -55,22 +56,43 @@ class FileController extends Controller
 
     public function storeCollection(Request $request) {
         $user = auth()->user();
-
+    
         $coleccion = new Coleccion();
         $coleccion->user_id = $user->id;
         $coleccion->nombre = $request->input('nombre');
         $coleccion->descripcion = $request->input('descripcion');
-        $coleccion->imagenCabecera = "images/collectionIcon.webp";
-
+    
+        if($request->hasFile('imagenCabecera')) {
+            $request->validate([
+                'imagenCabecera' => 'required|file|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            ]);
+    
+            $file = new File();
+            $file->user_id = auth()->id();
+            $file->filename = "Cabecera_" . $coleccion->nombre . $request->file('imagenCabecera')->getClientOriginalName();
+            $file->type = $request->file('imagenCabecera')->getClientMimeType();
+            $url = $request->file('imagenCabecera')->store('/public/uploads');
+            $path = substr($url, 15);
+            $file->path = $path;
+            $file->coleccion_id = $coleccion->id;
+            $file->active = false;
+            $file->save();
+    
+            $coleccion->imagenCabecera = $path;
+    
+        } else {
+            $coleccion->imagenCabecera = "collectionIcon.webp";
+        }
+    
         $coleccion->save();
-
+    
         return back();
     }
 
     public function showCollection($coleccion) {
 
         $user = auth()->user();
-        $colecciones = Coleccion::all();
+        $colecciones = Coleccion::where('user_id', $user->id)->get();
         $colec = Coleccion::find($coleccion);
         $files = File::where('user_id', $user->id)
                     ->where('coleccion_id', $coleccion)
@@ -84,7 +106,7 @@ class FileController extends Controller
     // Método para descargar un archivo
     public function download(File $file)
     {
-        $filePath = storage_path('app/public/' . $file->path);
+        $filePath = storage_path('app/public/uploads/' . $file->path);
         return Response::download($filePath, $file->filename);
     }
 
@@ -108,6 +130,14 @@ class FileController extends Controller
         $file->save();
 
         return redirect()->route('file.index')->with('success', 'Archivo eliminado con éxito.');
+    }
+
+    public function destroyCollection(string $id)
+    {
+        $colec = Coleccion::find($id);
+        $colec->delete();
+
+        return redirect()->route('file.index')->with('success', 'Colección eliminada con éxito.');
     }
 
 }

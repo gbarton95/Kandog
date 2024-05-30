@@ -21,6 +21,8 @@ class DashboardController extends Controller
         $maxTemp = null;
         $windy = null;
         $no = null;
+        $proxDiaSesion = "";
+        $proxHoraSesion ="";
     
         //API TIEMPO
         try {
@@ -83,9 +85,16 @@ class DashboardController extends Controller
             ->orderBy('inicio')
             ->get();
 
+        if($sesionesProximas) {
+            $proxDiaSesion = Carbon::parse($sesionesProximas[0]->inicio)->format('d-m');
+            $proxHoraSesion = Carbon::parse($sesionesProximas[0]->inicio)->format('H:i');
+        }
+
+           
+      
         return view('dashboard', ['username'=>$username, 'hoy'=>$hoy, 'lluviaTomorrow'=>$lluviaTomorrow, 'maxTemp'=>$maxTemp, 'windy'=>$windy, 'no'=>$no,
                     'fechaHoy'=>$fechaHoy, 'curiosidadPerro' => $curiosidadAleatoria, 'sesionesHoy' => $sesionesHoy,
-                    'sesionesProximas' => $sesionesProximas]);
+                    'sesionesProximas' => $sesionesProximas, 'proxDiaSesion'=>$proxDiaSesion, 'proxHoraSesion'=>$proxHoraSesion]);
     }
     
 }

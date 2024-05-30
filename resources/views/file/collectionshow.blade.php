@@ -17,6 +17,7 @@
                             <div class="col-6 col-md-4 col-lg-3">
                                 <div class="card my-3">
                                     <div class="card-body">
+                                        <a href="{{ route('file.download', $file) }}">
                                         @if (Str::startsWith($file->type, 'image/'))
                                             <img src="{{ asset('storage/uploads/' . $file->path) }}"
                                                 class="card-image-top" alt="thumbnail">
@@ -27,6 +28,7 @@
                                             <img src="{{ asset('images/unknownPreview.png') }}" class="card-image-top"
                                                 alt="thumbnail">
                                         @endif
+                                        </a>
                                         <h3 class="card-title">{{ $file->filename }}</h3>
                                         {{-- <p class="card-text">{{ $file->description}}</p> --}}
                                         <div class="d-flex gap-2 justify-content-end">
